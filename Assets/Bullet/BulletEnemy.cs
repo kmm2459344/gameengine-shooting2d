@@ -21,10 +21,10 @@ public class BulletEnemy : MonoBehaviour
     void Update()
     {
         _Move();
-        if (transform.position.y < -5.4)
-        {
-            Destroy(gameObject);
-        }
+        //if (transform.position.y < -5.4)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void _Move()
@@ -32,20 +32,22 @@ public class BulletEnemy : MonoBehaviour
         _rb.linearVelocity = transform.up * _speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "BulletPlayer")
-        {
-            Destroy(gameObject);
-        }
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "BulletPlayer")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 
 }
