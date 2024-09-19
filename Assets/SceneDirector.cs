@@ -69,6 +69,10 @@ public class SceneDirector : MonoBehaviour
 
         BoomCount = Mathf.Clamp(BoomCount, 0, 3); //BoomCount‚É§ŒÀ‚ğ‚Â‚¯‚é
 
+        
+        Power = Resources.Load<GameObject>("Item/PowerItem");
+        Instantiate(Power, new Vector2(0, 0), Quaternion.identity);
+
     }
 
     // Update is called once per frame
