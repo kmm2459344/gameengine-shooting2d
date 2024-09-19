@@ -14,13 +14,16 @@ public class SceneDirector : MonoBehaviour
     public GameObject Player;
     public static int Player_HP = 100;
     public static int Player_Power = 10;
+    public static float Player_Special = 0;
 
+    //TODO　アイテム
     //アイテム
-    public GameObject Power;
+    public static int ItemNo;
+    public static GameObject Power;
     public static int PowerCount = 0;
-    public GameObject Boom;
+    public static GameObject Boom;
     public static int BoomCount = 0; //上限3　下限0
-    public GameObject Coin;
+    public static GameObject Coin;
     public static int CoinCount = 0;
 
     //Enemy_A
@@ -53,12 +56,14 @@ public class SceneDirector : MonoBehaviour
     public Text BoomCounter;
     public Text CoinCounter;
 
-    public Slider slider;
+    [SerializeField, Header("バー")]
+    public Slider HPBer;
+    public Slider SpecialBer;
 
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = 100;
+        HPBer.value = 100;
         //プレイヤー初期位置
         Player.transform.position = new Vector2(0, -3.83f);
 
@@ -69,10 +74,24 @@ public class SceneDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = (float)Player_HP;
+        HPBer.value = (float)Player_HP;
+        SpecialBer.value = (float)Player_Special;
         PowerCounter.text = "" + (int)PowerCount;
         BoomCounter.text = "" + (int)BoomCount;
         CoinCounter.text = "" + (int)CoinCount;
+
+        //switch (ItemNo)
+        //{
+        //    case 1:
+
+        //        break;
+        //    case 2:
+
+        //        break;
+        //    case 5:
+
+        //        break;
+        //}
 
     }
 

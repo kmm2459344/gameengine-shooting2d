@@ -31,16 +31,18 @@ public class Enemy_A : MonoBehaviour
 
     private void _shooting()
     {
-        if (_player == null) return;
+        if (transform.position.y < 3.7f) {
+            if (_player == null) return;
 
-        _shootCount += Time.deltaTime;
-        if (_shootCount < _shootTime) return;
+            _shootCount += Time.deltaTime;
+            if (_shootCount < _shootTime) return;
 
-        GameObject bulletObj = Instantiate(_bullet);
-        bulletObj.transform.position = transform.position;
-        Vector3 dir = _player.transform.position - transform.position;
-        bulletObj.transform.rotation = Quaternion.FromToRotation(transform.up, dir);
-        _shootCount = 0.0f;
+            GameObject bulletObj = Instantiate(_bullet);
+            bulletObj.transform.position = transform.position;
+            Vector3 dir = _player.transform.position - transform.position;
+            bulletObj.transform.rotation = Quaternion.FromToRotation(transform.up, dir);
+            _shootCount = 0.0f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,10 +50,30 @@ public class Enemy_A : MonoBehaviour
         if (collision.gameObject.tag == "BulletPlayer")
         {
             SceneDirector.Enemy_A_HP -= SceneDirector.Player_Power;
-            Debug.Log("“G:" + SceneDirector.Enemy_A_HP);
+            //Debug.Log("“G:" + SceneDirector.Enemy_A_HP);
+            SceneDirector.Player_Special += 2.0f;
             if (SceneDirector.Enemy_A_HP <= 0)
             { 
                 Destroy(gameObject);
+
+                int lottery = Random.Range(1, 10);
+                Debug.Log("Enemy_A:" + lottery);
+                //SceneDirector.ItemNo = lottery;
+
+                switch (lottery)
+                {
+                    case 0:
+                        Instantiate(SceneDirector.Power, new Vector2(0, 0), Quaternion.identity);
+                        break;
+                    case 3:
+                        Instantiate(SceneDirector.Boom, new Vector2(0, 0), Quaternion.identity);
+                        break;
+                    //case 6:
+                    //    Instantiate(SceneDirector.Power, new Vector2(0, 0), Quaternion.identity);
+                    //    break;
+                }
+
+
             }
         }
     }

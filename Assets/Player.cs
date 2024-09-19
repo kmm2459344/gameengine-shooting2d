@@ -64,6 +64,12 @@ public class Player : MonoBehaviour
             Shoot();
             //Debug.Log("スペース入力");
         }
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Shoot();
+        //    //Debug.Log("スペース入力");
+        //}
     }
 
     //弾の発射
@@ -83,6 +89,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "BulletEnemy")
         {
             SceneDirector.Player_HP -= 10;
+            SceneDirector.Player_Special += 0.5f;
             if (SceneDirector.Player_HP <= 0)
             {
                 Destroy(gameObject);
