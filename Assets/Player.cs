@@ -24,12 +24,12 @@ public class Player : MonoBehaviour
     private float ShootCount;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
         inputVelocity = Vector2.zero;
         rb = GetComponent<Rigidbody2D>();
+
         ShootCount = 0;
         PlayerPos = transform.position;
 
@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
     //’e‚Ì”­ŽË
     private void Shoot()
     {
+
         ShootCount += Time.deltaTime;
         if (ShootCount < ShootTime) return;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class SceneDirector : MonoBehaviour
     public GameObject Power;
     public static int PowerCount = 0;
     public GameObject Boom;
-    public static int BoomCount = 0;
+    public static int BoomCount = 0; //上限3　下限0
     public GameObject Coin;
     public static int CoinCount = 0;
 
@@ -46,6 +47,12 @@ public class SceneDirector : MonoBehaviour
     public static int Boss_HP = 100;
     public static int Boss_Power = 100;
 
+    //カウンター
+    [SerializeField, Header("カウンター")]
+    public Text PowerCounter;
+    public Text BoomCounter;
+    public Text CoinCounter;
+
     public Slider slider;
 
     // Start is called before the first frame update
@@ -55,29 +62,17 @@ public class SceneDirector : MonoBehaviour
         //プレイヤー初期位置
         Player.transform.position = new Vector2(0, -3.83f);
 
+        BoomCount = Mathf.Clamp(BoomCount, 0, 3); //BoomCountに制限をつける
+
     }
 
     // Update is called once per frame
     void Update()
     {
         slider.value = (float)Player_HP;
-
-        //switch (Wave)
-        //{
-        //    case　1:
-
-        //        break;
-        //    case 2:
-
-        //        break;
-        //    case 3:
-
-        //        break;
-        //    case 4:
-        //        BOSS();
-        //        break;
-
-        //}
+        PowerCounter.text = "" + (int)PowerCount;
+        BoomCounter.text = "" + (int)BoomCount;
+        CoinCounter.text = "" + (int)CoinCount;
 
     }
 

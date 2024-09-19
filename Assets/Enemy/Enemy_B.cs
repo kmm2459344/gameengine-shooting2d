@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy_B : MonoBehaviour
+public class Enemy_B_TEST : MonoBehaviour
 {
     [SerializeField, Header("弾オブジェクト")]
     private GameObject _bullet;
