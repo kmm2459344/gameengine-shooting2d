@@ -10,11 +10,14 @@ public class Bullet1 : MonoBehaviour
     //private float _power;
 
     private Rigidbody2D _rb;
+    AudioSource audioSource;
+    public AudioClip ShootSE;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class Bullet1 : MonoBehaviour
 
     private void _Move()
     {
+        //audioSource.PlayOneShot(ShootSE);
         _rb.linearVelocity = transform.up * _speed;
     }
 

@@ -24,12 +24,12 @@ public class Player : MonoBehaviour
     private float ShootCount;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
         inputVelocity = Vector2.zero;
         rb = GetComponent<Rigidbody2D>();
+
         ShootCount = 0;
         PlayerPos = transform.position;
 
@@ -64,11 +64,18 @@ public class Player : MonoBehaviour
             Shoot();
             //Debug.Log("スペース入力");
         }
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Shoot();
+        //    //Debug.Log("スペース入力");
+        //}
     }
 
     //弾の発射
     private void Shoot()
     {
+
         ShootCount += Time.deltaTime;
         if (ShootCount < ShootTime) return;
 
@@ -82,6 +89,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "BulletEnemy")
         {
             SceneDirector.Player_HP -= 10;
+            SceneDirector.Player_Special += 0.5f;
             if (SceneDirector.Player_HP <= 0)
             {
                 Destroy(gameObject);

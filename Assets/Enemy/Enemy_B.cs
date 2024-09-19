@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy_B : MonoBehaviour
+public class Enemy_B_TEST : MonoBehaviour
 {
     [SerializeField, Header("弾オブジェクト")]
     private GameObject _bullet;
@@ -50,9 +50,14 @@ public class Enemy_B : MonoBehaviour
         {
             SceneDirector.Enemy_B_HP -= SceneDirector.Player_Power;
             //Debug.Log("敵:" + SceneDirector.Enemy_B_HP);
+            SceneDirector.Player_Special += 2.0f;
             if (SceneDirector.Enemy_B_HP <= 0)
             {
                 Destroy(gameObject);
+
+                int lottery = Random.Range(1, 20);
+                Debug.Log("Enemy_B:" + lottery);
+                //SceneDirector.ItemNo = lottery;
             }
         }
     }
