@@ -59,17 +59,12 @@ public class Player : MonoBehaviour
 
         rb.MovePosition(rb.position + force * Time.fixedDeltaTime);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {
             Shoot();
             //Debug.Log("スペース入力");
         }
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Shoot();
-        //    //Debug.Log("スペース入力");
-        //}
     }
 
     //弾の発射

@@ -5,12 +5,20 @@ using UnityEngine;
 
 public class Enemy_A : MonoBehaviour
 {
-    [SerializeField, Header("�e�I�u�W�F�N�g")]
+    [SerializeField, Header("弾オブジェクト")]
     private GameObject _bullet;
-    [SerializeField, Header("�e�𔭎˂��鎞��")]
+    [SerializeField, Header("弾を発射する時間")]
     private float _shootTime;
-    //[SerializeField, Header("�̗�")]
+    [SerializeField, Header("移動速度")]
+    private float Speed = 5f;
+    //[SerializeField, Header("体力")]
     //private int HP;
+
+
+    private Rigidbody rb;
+    public float LimtX = 2.3f; // 画面の端の位置
+    private int direction = 1;
+    //public Vector2 Pos = Vector2.zero;
 
     private GameObject _player;
     private float _shootCount;
@@ -19,19 +27,37 @@ public class Enemy_A : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        //Pos = transform.position;
         _player = FindObjectOfType<Player>().gameObject;
         _shootCount = 0;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         _shooting();
+        if(transform.position.y < 3.7f)
+        {
+            //Pos.x += 1;
+            rb.linearVelocity = new Vector2(Speed * direction, rb.linearVelocity.y);
+
+            if(transform.position.x > LimtX || transform.position.x < -LimtX)
+            {
+                //Pos.x *= -1;
+                direction *= -1;
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            }
+        }
     }
 
     private void _shooting()
     {
         if (transform.position.y < 3.7f) {
+
             if (_player == null) return;
 
             _shootCount += Time.deltaTime;
@@ -50,7 +76,7 @@ public class Enemy_A : MonoBehaviour
         if (collision.gameObject.tag == "BulletPlayer")
         {
             SceneDirector.Enemy_A_HP -= SceneDirector.Player_Power;
-            //Debug.Log("�G:" + SceneDirector.Enemy_A_HP);
+            //Debug.Log("敵:" + SceneDirector.Enemy_A_HP);
             SceneDirector.Player_Special += 2.0f;
             if (SceneDirector.Enemy_A_HP <= 0)
             { 
