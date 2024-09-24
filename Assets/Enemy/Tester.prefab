@@ -166,9 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866c39c889f399e49a425398047c6dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  boundary: 10
-  isSplineComplete: 0
 --- !u!114 &8497380737707524453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
   m_PlayOnAwake: 1
-  m_LoopMode: 1
+  m_LoopMode: 0
   m_Method: 0
   m_Duration: 1
   m_MaxSpeed: 10

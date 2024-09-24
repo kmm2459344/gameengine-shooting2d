@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -68,10 +69,6 @@ public class SceneDirector : MonoBehaviour
         Player.transform.position = new Vector2(0, -3.83f);
 
         BoomCount = Mathf.Clamp(BoomCount, 0, 3); //BoomCountÇ…êßå¿ÇÇ¬ÇØÇÈ
-
-        
-        Power = Resources.Load<GameObject>("Item/PowerItem");
-        Instantiate(Power, new Vector2(0, 0), Quaternion.identity);
 
     }
 

@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     //[SerializeField, Header("爆発アニメーション")]
     //public GameObject prefabMyDie;
 
+    AudioSource audioSource;
+    public AudioClip Dead;
+
     private Vector2 inputVelocity;
     private Vector2 PlayerPos;
     private Rigidbody2D rb;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
     {
         inputVelocity = Vector2.zero;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         ShootCount = 0;
         PlayerPos = transform.position;
@@ -70,7 +74,6 @@ public class Player : MonoBehaviour
     //弾の発射
     private void Shoot()
     {
-
         ShootCount += Time.deltaTime;
         if (ShootCount < ShootTime) return;
 
@@ -87,7 +90,9 @@ public class Player : MonoBehaviour
             SceneDirector.Player_Special += 0.5f;
             if (SceneDirector.Player_HP <= 0)
             {
+                audioSource.PlayOneShot(Dead);
                 Destroy(gameObject);
+
                 //アニメーション
                 //GameObject obj = Instantiate(prefabMyDie,gameObject.transform.position, Quaternion.identity);
                 //Destroy(obj, 1.95f);

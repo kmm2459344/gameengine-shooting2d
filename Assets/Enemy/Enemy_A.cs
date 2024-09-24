@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Enemy_A : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class Enemy_A : MonoBehaviour
     private float Speed = 5f;
     //[SerializeField, Header("体力")]
     //private int HP;
-
 
     private Rigidbody rb;
     public float LimtX = 2.3f; // 画面の端の位置
